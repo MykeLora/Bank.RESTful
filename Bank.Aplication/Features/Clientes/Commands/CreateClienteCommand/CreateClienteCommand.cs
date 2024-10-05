@@ -18,4 +18,12 @@ namespace Bank.Aplication.Features.Clientes.Commands.CreateClienteCommand
         public string? Direccion { get; set; }
 
     }
+
+    public class CreateClienteCommandHandler : IRequestHandler<CreateClienteCommand, Response<int>>
+    {
+        public async Task<Response<int>> Handle(CreateClienteCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
