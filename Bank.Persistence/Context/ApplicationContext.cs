@@ -14,7 +14,7 @@ namespace Bank.Persistence.Context
     {
         private readonly IDateTimeService _dateTime;
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options, IDateTimeService dateTime) : base(options
+        public ApplicationContext(DbContextOptions<ApplicationContext> options, IDateTimeService dateTime) : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             _dateTime = dateTime;
@@ -38,6 +38,58 @@ namespace Bank.Persistence.Context
 
             }
             return base.SaveChangesAsync(cancellationToken);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+
+            #region "Property Configuration"
+
+                #region Cliente
+                    modelBuilder.Entity<Cliente>(entity =>
+                    {
+                        entity.ToTable("Clientes");
+
+                        
+                        entity.HasKey(cl => cl.Id);
+
+                        
+                        entity.Property(c => c.Nombre)
+                              .IsRequired()
+                              .HasMaxLength(100);
+
+                        entity.Property(c => c.Apellido)
+                              .IsRequired()
+                              .HasMaxLength(50);
+
+                        entity.Property(c => c.FechaNacimiento)
+                              .IsRequired();
+
+                        entity.Property(c => c.Direccion)
+                              .IsRequired()
+                              .HasMaxLength(100);
+
+                        entity.Property(c => c.Telefono)
+                              .HasMaxLength(9);
+
+                        entity.Property(c => c.Email)
+                              .HasMaxLength(50);
+
+                        entity.Property(c => c.Edad);
+
+                        entity.Property(c => c.CreatedBy)
+                              .HasMaxLength(30);
+
+                        entity.Property(c => c.LastModifiedBy)
+                              .HasMaxLength(50);
+                    });
+
+
+                #endregion
+            #endregion
+
         }
     }
 }

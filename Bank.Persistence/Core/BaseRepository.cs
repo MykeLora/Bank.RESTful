@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bank.Persistence.Core
 {
-    public abstract class BaseRepository<T> : RepositoryBase<T>, IBaseRepository<T> where T : class
+    public  class BaseRepository<T> : RepositoryBase<T>, IBaseRepository<T> where T : class
     {
         private readonly DbContext _dbContext;
 
