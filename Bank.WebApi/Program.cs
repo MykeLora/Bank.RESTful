@@ -1,10 +1,5 @@
-using Bank.Aplication.Extentions;
-using Bank.Aplication.Interfaces;
-using Bank.Persistence.Extention;
-using Bank.Shared;
-using System.Reflection;
 
-namespace Bank.Api
+namespace Bank.WebApi
 {
     public class Program
     {
@@ -13,19 +8,13 @@ namespace Bank.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddSharedInfraestructure();
-
-            builder.Services.AddPersistenceInfraestructure(builder.Configuration);
-
-            builder.Services.AddApplicationLayer();
-  
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();//
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
