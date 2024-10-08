@@ -1,3 +1,4 @@
+using Bank.Api.Extentions;
 using Bank.Aplication.Extentions;
 using Bank.Aplication.Interfaces;
 using Bank.Persistence.Extention;
@@ -38,6 +39,7 @@ namespace Bank.Api
 
             app.UseAuthorization();
 
+            app.UserErrorHandlingMiddleware();
 
             app.MapControllers();
 
